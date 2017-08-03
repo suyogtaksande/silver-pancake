@@ -1,0 +1,32 @@
+<%#= render "devise/shared/links" %>
+<div class="page-content container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-wrapper">
+        <div class="box">
+          <div class="content-wrap">
+              <h6>Sign In</h6>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <%= f.email_field :email, autofocus: true, placeholder: :'E-mail address', :class=>"form-control email_field" %>
+                <%= f.password_field :password, autocomplete: "off", :class=>"form-control password_field" %>
+                <% if devise_mapping.rememberable? -%>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end -%>
+                <div class="action">
+                  <%= f.submit "Login", :classs=>"btn btn-info info"%>
+                </div>
+              <% end %>
+          </div>
+        </div>
+        <%#= render "devise/shared/links" %>
+        <div class="already">
+            <p>Don't have an account yet?</p>
+            <a href="<%= new_user_registration_path %>">Sign Up</a>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

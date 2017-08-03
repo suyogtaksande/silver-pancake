@@ -1,0 +1,51 @@
+<div class="col-md-10">
+  <div class="content-box-header">
+    <div class="panel-title">Payment History</div>
+    <div class="pull-right">
+      <%= form_tag stripe_payments_path do %>
+        <article style="margin-top: -8px;">
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span>Amount: $10.00</span>
+          </label>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_NSrWH9qos2yGTUiMtnpowNZz"
+            data-amount="1000"
+            data-name="suyog"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+          </script>
+        </article>
+      <% end %>
+    </div>
+  </div>
+  <div class="content-box-large box-with-header">
+  	<table class="table table-striped">
+    <thead>
+      <tr>
+      	<th>Sr.no</th>
+        <th>Email</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<% @payments.each_with_index do |payment, index| %>
+	      <tr>
+	        <td><%= index %></td>
+	        <td><%= payment.user.email %></td>
+	        <td><%= payment.amount %></td>
+	        <td><%= payment.created_at.strftime("%d %b %Y")%></td>
+	      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br><br>
+  </div>
+</div>
