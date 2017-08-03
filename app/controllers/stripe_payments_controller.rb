@@ -6,7 +6,8 @@ class StripePaymentsController < ApplicationController
 	end
 
 	def index
-		@payments = StripePayment.all
+		# @payments = StripePayment.all
+		@payments = StripePayment.where(:user_id => current_user.id)
 	end
 
 	def create
